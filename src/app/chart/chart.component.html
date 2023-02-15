@@ -1,17 +1,9 @@
 <div style="display: flex;flex-direction: column;align-items: center;">
     <h2 style="margin: 15px">Daily</h2>
     <div style="height: 760px; width: 100%" id="daily"></div>
-    <mat-slider style="width: 80%;"
-        thumbLabel
-        tickInterval="15"
-        [displayWith]="formatLabel"
-        class="example-margin"
-        [disabled]="disabled"
-        [max]="max"
-        [min]="min"
-        [step]="step"
-        (input)="dailySliderChange($event)"       
-       [(ngModel)]="value">
+    <mat-slider style="width: 80%;" thumbLabel tickInterval="15" [displayWith]="formatLabel" class="example-margin"
+        [disabled]="disabled" [max]="max" [min]="min" [step]="step" (input)="dailySliderChange($event)"
+        [(ngModel)]="value">
     </mat-slider>
     <h2 style="margin: 15px">Weekly</h2>
     <div style="height: 760px; width: 100%" id="weekly"></div>
