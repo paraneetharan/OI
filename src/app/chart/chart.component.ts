@@ -41,23 +41,14 @@ export class ChartComponent implements OnInit {
       this.data_format(r)
     })
 
-    
-
-
-
-
     setInterval(() => {
-      var current_time: any = new Date();
-      current_time = current_time.toLocaleTimeString();
-      // if (current_time > "23:00:00" && current_time < "23:59:00") {
-      //   localStorage.removeItem('chart')
-      // }
-      // if (current_time > "09:15:00" && current_time < "15:30:00") {
+      var current_time: any = moment().format('HH:mm')
+      if (current_time > "09:15" && current_time < "15:31") {
         this.api.get_data().subscribe((r: any) => {
           this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
           this.data_format(r)
         })
-      // }
+      }
     }, 60000)
   }
 
@@ -95,8 +86,6 @@ export class ChartComponent implements OnInit {
         this.Weekly_CE.push(price.CE.openInterest * 50)
         this.daily_CE.push((price.CE.changeinOpenInterest) * 50)
         this.daily_PE.push((price.PE.changeinOpenInterest) * 50)
-
-
       }
     });
 
