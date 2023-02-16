@@ -15,7 +15,7 @@ export class ChartComponent implements OnInit {
   max: any = 930;
   min = 555;
   showTicks = false;
-  step = 1;
+  step = 3;
   thumbLabel = false;
   value: any = 0;
   time = '00:00'
