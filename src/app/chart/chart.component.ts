@@ -41,21 +41,23 @@ export class ChartComponent implements OnInit {
       this.data_format(r)
     })
 
+    
+
 
 
 
     setInterval(() => {
       var current_time: any = new Date();
       current_time = current_time.toLocaleTimeString();
-      if (current_time > "23:00:00" && current_time < "23:59:00") {
-        localStorage.removeItem('chart')
-      }
-      if (current_time > "09:15:00" && current_time < "15:30:00") {
+      // if (current_time > "23:00:00" && current_time < "23:59:00") {
+      //   localStorage.removeItem('chart')
+      // }
+      // if (current_time > "09:15:00" && current_time < "15:30:00") {
         this.api.get_data().subscribe((r: any) => {
           this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
           this.data_format(r)
         })
-      }
+      // }
     }, 60000)
   }
 
