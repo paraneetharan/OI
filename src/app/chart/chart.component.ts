@@ -132,9 +132,9 @@ export class ChartComponent implements OnInit {
       this.dailyChart()
     }
     else {
-      this.daily_CE = [];
-      this.daily_PE = [];
-      this.dailyChart()
+      // this.daily_CE = [];
+      // this.daily_PE = [];
+      // this.dailyChart()
     }
 
   }
@@ -159,7 +159,12 @@ export class ChartComponent implements OnInit {
       legend: {
         show: false
       },
-      tooltip: {},
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
       // dataset: {
       //   source: src
       // },
@@ -190,7 +195,12 @@ export class ChartComponent implements OnInit {
       legend: {
         show: false
       },
-      tooltip: {},
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
       // dataset: {
       //   source: src
       // },
