@@ -49,7 +49,7 @@ export class ChartComponent implements OnInit {
           this.data_format(r)
         })
       }
-      if( current_time > "09:00" && current_time < "09.10"){
+      if( current_time > "09:00" && current_time < "09:10"){
         localStorage.removeItem("chart")
         this.chart_data = {}
       }
