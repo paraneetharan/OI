@@ -51,6 +51,7 @@ export class ChartComponent implements OnInit {
       }
       if( current_time > "09:00" && current_time < "09.10"){
         localStorage.removeItem("chart")
+        this.chart_data = {}
       }
     }, 60000)
   }
