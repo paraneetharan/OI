@@ -35,25 +35,56 @@ export class ChartComponent implements OnInit {
     try {
       this.chart_data = JSON.parse(data) || {}
     } catch { }
-
-    this.api.get_data().subscribe((r: any) => {
-      this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
-      this.data_format(r)
+    var current_time: any = moment().format('HH:mm')
+    this.time_stamp = current_time
+    this.api.get().subscribe(r => {
+      console.log(r)
+      this.chart_data = r;
+      this.new_data()
     })
+
+    // this.api.get_data().subscribe((r: any) => {
+    //   this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
+    //   // this.data_format(r)
+    // })
 
     setInterval(() => {
       var current_time: any = moment().format('HH:mm')
+      this.time_stamp = current_time
       if (current_time > "09:15" && current_time < "15:31") {
-        this.api.get_data().subscribe((r: any) => {
-          this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
-          this.data_format(r)
+        this.api.get().subscribe(r => {
+          console.log(r)
+          this.chart_data = r;
+          this.new_data()
         })
+        // this.api.get_data().subscribe((r: any) => {
+        //   this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
+        //   // this.data_format(r)
+        // })
       }
       if( current_time > "09:00" && current_time < "09:10"){
         localStorage.removeItem("chart")
         this.chart_data = {}
       }
     }, 60000)
+  }
+
+  new_data(){
+    let current_time = moment().format('HH:mm');
+    this.chart_data.map( item => {
+      if(item.time == current_time){
+        this.Weekly_CE = item.chart_data.Weekly_CE
+        this.Weekly_PE = item.chart_data.Weekly_PE
+        this.daily_CE = item.chart_data.daily_CE
+        this.daily_PE = item.chart_data.daily_PE
+        this.x_axis = item.chart_data.x_axis
+      }
+    })
+    this.weeklyChart();
+    this.dailyChart();
+    this.max = this.getMinutesFromTime(current_time)
+    this.time_stamp = current_time
+    this.value = this.getMinutesFromTime(current_time)
   }
 
   data_format(r) {
@@ -124,22 +155,30 @@ export class ChartComponent implements OnInit {
 
   dailySliderChange(e) {
     this.time = this.getTimeFromMinutes(e.value);
-    let data: any = localStorage.getItem('chart')
-    try {
-      data = JSON.parse(data)
+    // let data: any = JSON.parse('chart')
+    // try {
+    //   data = JSON.parse(data)
 
-    } catch { }
-    if (data[this.time]) {
-      this.daily_CE = data[this.time]['daily_CE']
-      this.daily_PE = data[this.time]['daily_PE']
-      this.x_axis = data[this.time]['x_axis']
-      this.dailyChart()
-    }
-    else {
-      // this.daily_CE = [];
-      // this.daily_PE = [];
-      // this.dailyChart()
-    }
+    // } catch { }
+    // if (data[this.time]) {
+    //   this.daily_CE = data[this.time]['daily_CE']
+    //   this.daily_PE = data[this.time]['daily_PE']
+    //   this.x_axis = data[this.time]['x_axis']
+    //   this.dailyChart()
+    // }
+    // else {
+    //   // this.daily_CE = [];
+    //   // this.daily_PE = [];
+    //   // this.dailyChart()
+    // }
+    this.chart_data.map( item => {
+      if(item.time == this.time){
+        this.daily_CE = item.chart_data.daily_CE
+        this.daily_PE = item.chart_data.daily_PE
+        this.x_axis = item.chart_data.x_axis
+        this.dailyChart()
+      }
+    })
 
   }
 
