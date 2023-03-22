@@ -66,7 +66,7 @@ export class ChartComponent implements OnInit {
         localStorage.removeItem("chart")
         this.chart_data = {}
       }
-    }, 60000)
+    }, 30000)
   }
 
   new_data(){
