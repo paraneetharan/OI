@@ -82,9 +82,9 @@ export class ChartComponent implements OnInit {
     })
     this.weeklyChart();
     this.dailyChart();
-    this.max = this.getMinutesFromTime(current_time)
+    // this.max = this.getMinutesFromTime(current_time)
     this.time_stamp = current_time
-    this.value = this.getMinutesFromTime(current_time)
+    // this.value = this.getMinutesFromTime(current_time)
   }
 
   data_format(r) {
@@ -125,7 +125,7 @@ export class ChartComponent implements OnInit {
     });
 
     this.time_stamp = r.records.timestamp
-    this.max = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
+    // this.max = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
 
     this.chart_data
     [moment(this.time_stamp).format('HH:mm')] = {

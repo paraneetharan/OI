@@ -20,6 +20,7 @@ export class DataServiceService {
   }
   public get(){
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
-    return this.http.get('https://subtle-tiramisu-6b1716.netlify.app/.netlify/functions/api/oi-data', { headers: headers })
+    return this.http.get('https://oi-api.onrender.com/oi-data', { headers: headers })
+    // return this.http.get('https://subtle-tiramisu-6b1716.netlify.app/.netlify/functions/api/oi-data', { headers: headers })
   }
 }
