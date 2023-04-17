@@ -90,7 +90,7 @@ export class ChartComponent implements OnInit {
       //   }
       // };
       // this.options = opts
-      // this.maxValue = this.getMinutesFromTime(this.time_stamp)
+      this.maxValue = this.getMinutesFromTime(this.time_stamp)
       console.log(this.options)
       this.new_data()
     })
@@ -143,7 +143,7 @@ export class ChartComponent implements OnInit {
       }
     };
     this.options = opts
-    this.maxValue = this.getMinutesFromTime(this.time_stamp)
+
     // this.chart_data.map( item => {
     //   if(item.time == current_time){
     //     this.Weekly_CE = item.chart_data.Weekly_CE
