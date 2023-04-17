@@ -126,7 +126,7 @@ export class ChartComponent implements OnInit {
     this.time_stamp = current_time
     let opts: Options = {
       floor: 555,
-      ceil: this.getMinutesFromTime(this.time_stamp),
+      ceil: this.getMinutesFromTime(this.time_stamp)<555? 930: this.getMinutesFromTime(this.time_stamp),
       step: 3,
       translate: (value: number, label: LabelType): string => {
         switch (label) {
