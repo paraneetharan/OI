@@ -16,7 +16,7 @@ export class ChartComponent implements OnInit {
   max: any = 930;
   min = 555;
   showTicks = false;
-  step = 1;
+  step = 2;
   thumbLabel = false;
   value: any = 0;
   time = '00:00'
@@ -36,7 +36,7 @@ export class ChartComponent implements OnInit {
   options: Options = {
     floor: 555,
     ceil: 930,
-    step: 1,
+    step: 2,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -127,7 +127,7 @@ export class ChartComponent implements OnInit {
     let opts: Options = {
       floor: 555,
       ceil: this.getMinutesFromTime(this.time_stamp)<555? 930: this.getMinutesFromTime(this.time_stamp),
-      step: 1,
+      step: 2,
       translate: (value: number, label: LabelType): string => {
         switch (label) {
           case LabelType.Low:
