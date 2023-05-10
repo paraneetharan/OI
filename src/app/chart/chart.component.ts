@@ -16,7 +16,7 @@ export class ChartComponent implements OnInit {
   max: any = 930;
   min = 555;
   showTicks = false;
-  step = 3;
+  step = 1;
   thumbLabel = false;
   value: any = 0;
   time = '00:00'
@@ -36,7 +36,7 @@ export class ChartComponent implements OnInit {
   options: Options = {
     floor: 555,
     ceil: 930,
-    step: 3,
+    step: 1,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -127,7 +127,7 @@ export class ChartComponent implements OnInit {
     let opts: Options = {
       floor: 555,
       ceil: this.getMinutesFromTime(this.time_stamp)<555? 930: this.getMinutesFromTime(this.time_stamp),
-      step: 3,
+      step: 1,
       translate: (value: number, label: LabelType): string => {
         switch (label) {
           case LabelType.Low:
@@ -243,6 +243,13 @@ export class ChartComponent implements OnInit {
     //   // this.daily_PE = [];
     //   // this.dailyChart()
     // }
+    // if(this.time < this.time_stamp){
+    //   let item = this.chart_data[this.chart_data.length - 1]
+    //   this.daily_CE = item.chart_data.daily_CE
+    //   this.daily_PE = item.chart_data.daily_PE
+    //   this.x_axis = item.chart_data.x_axis
+    //   this.dailyChart()
+    // }
     this.chart_data.map( item => {
       if(item.time == this.time){
         this.daily_CE = item.chart_data.daily_CE
@@ -273,7 +280,6 @@ export class ChartComponent implements OnInit {
   }
 
   onUserChange(changeContext: ChangeContext): void {
-    console.log('change', changeContext)
     if (changeContext.value == 555){
       this.time = this.getTimeFromMinutes(changeContext.highValue);
       this.chart_data.map( item => {
@@ -284,6 +290,13 @@ export class ChartComponent implements OnInit {
           this.dailyChart()
         }
       })
+      // if(this.getTimeFromMinutes(this.options.ceil) < this.getTimeFromMinutes(changeContext.highValue)){
+      //   let item = this.chart_data[this.chart_data.length - 1]
+      //   this.daily_CE = item.chart_data.daily_CE
+      //   this.daily_PE = item.chart_data.daily_PE
+      //   this.x_axis = item.chart_data.x_axis
+      //   this.dailyChart()
+      // }
     } else {
       const result:any = {};
       let a = {}
