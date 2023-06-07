@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartComponent } from './chart/chart.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:'home', pathMatch: 'full'},
-  {path: 'home', component:ChartComponent}
+  {path: '', component:ChartComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
