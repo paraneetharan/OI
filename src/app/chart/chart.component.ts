@@ -51,6 +51,7 @@ export class ChartComponent implements OnInit {
       }
     }
   };
+  chart_type = 'nifty'
   ngOnInit(): void {
 
     // let data: any = localStorage.getItem('chart')
@@ -59,7 +60,7 @@ export class ChartComponent implements OnInit {
     // } catch { }
     var current_time: any = moment().format('HH:mm')
     this.time_stamp = current_time
-    this.api.get().subscribe(r => {
+    this.api.get(this.chart_type).subscribe(r => {
       console.log(r)
       this.chart_data = r;
       this.chart_data.map( item => {
@@ -91,7 +92,7 @@ export class ChartComponent implements OnInit {
       // };
       // this.options = opts
       this.maxValue = this.getMinutesFromTime(this.time_stamp)
-      console.log(this.options)
+      // console.log(this.options)
       this.new_data()
     })
 
@@ -104,7 +105,7 @@ export class ChartComponent implements OnInit {
       var current_time: any = moment().format('HH:mm')
       this.time_stamp = current_time
       if (current_time > "09:15" && current_time < "15:31") {
-        this.api.get().subscribe(r => {
+        this.api.get(this.chart_type).subscribe(r => {
           console.log(r)
           this.chart_data = r;
           this.new_data()
@@ -157,6 +158,15 @@ export class ChartComponent implements OnInit {
     this.dailyChart();
     // this.max = this.getMinutesFromTime(current_time)
     // this.value = this.getMinutesFromTime(current_time)
+  }
+
+  chartChange(){
+    if(this.chart_type == 'nifty' ){
+      this.chart_type = 'bank nifty'
+    } else {
+      this.chart_type = 'nifty'
+    }
+    this.ngOnInit()
   }
 
   data_format(r) {

@@ -1,5 +1,6 @@
 <div style="display: flex;flex-direction: column;align-items: center;">
     <h2 style="margin: 15px">Daily</h2>
+    <button class="button-style" (click)="chartChange()">{{chart_type == 'nifty'? 'Bank Nifty' : 'Nifty'}}</button>
     <div style="height: 660px; width: 80rem" id="daily"></div>
     <!-- <mat-slider style="width: 70%;" thumbLabel tickInterval="15" [displayWith]="formatLabel" class="example-margin"
         [disabled]="disabled" [max]="max" [min]="min" [step]="step" (input)="dailySliderChange($event)"

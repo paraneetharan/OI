@@ -18,9 +18,10 @@ export class DataServiceService {
     // params = params.set('reqDate', date)
     return this.http.get('https://webapi.niftytrader.in/webapi/Option/oi-data', { headers: headers, params: params })
   }
-  public get(){
+  public get(chart){
+    let params = new HttpParams().set('chart_type', chart)
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
-    return this.http.get('https://oi-api.onrender.com/oi-data', { headers: headers })
+    return this.http.get('https://oi-api.onrender.com/oi-data', { headers: headers, params: params })
     // return this.http.get('https://subtle-tiramisu-6b1716.netlify.app/.netlify/functions/api/oi-data', { headers: headers })
   }
 }
