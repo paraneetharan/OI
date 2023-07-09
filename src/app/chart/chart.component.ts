@@ -52,6 +52,8 @@ export class ChartComponent implements OnInit {
     }
   };
   chart_type = 'nifty'
+  index_change
+  index_data
   ngOnInit(): void {
 
     // let data: any = localStorage.getItem('chart')
@@ -62,7 +64,8 @@ export class ChartComponent implements OnInit {
     this.time_stamp = current_time
     this.api.get(this.chart_type).subscribe(r => {
       console.log(r)
-      this.chart_data = r;
+      this.chart_data = r['options'];
+      this.index_data = r['index']
       this.chart_data.map( item => {
         if(item.time == this.time_stamp > "15:30"? "15:30" : this.time_stamp){
           this.daily_CE = item.chart_data.daily_CE
@@ -70,6 +73,11 @@ export class ChartComponent implements OnInit {
           this.Weekly_CE = item.chart_data.Weekly_CE
           this.Weekly_PE = item.chart_data.Weekly_PE
           this.x_axis = item.chart_data.x_axis
+        }
+      })
+      this.index_data.map( item => {
+        if(item.time == (this.time_stamp > "15:30"? "15:30" : this.time_stamp)){
+          this.index_change = item
         }
       })
       // let opts: Options = {
@@ -107,8 +115,14 @@ export class ChartComponent implements OnInit {
       if (current_time > "09:15" && current_time < "15:31") {
         this.api.get(this.chart_type).subscribe(r => {
           console.log(r)
-          this.chart_data = r;
+          this.chart_data = r['options'];
+          this.index_data = r['index'];
           this.new_data()
+          this.index_data.map( item => {
+            if(item.time == (this.time_stamp > "15:30"? "15:30" : this.time_stamp)){
+            this.index_change = item
+            }
+          })
         })
         // this.api.get_data().subscribe((r: any) => {
         //   this.value = this.getMinutesFromTime(moment(r.records.timestamp).format('HH:mm'))
@@ -300,6 +314,11 @@ export class ChartComponent implements OnInit {
           this.dailyChart()
         }
       })
+      this.index_data.map( item => {
+        if(item.time == this.time){
+        this.index_change = item
+        }
+      })
       // if(this.getTimeFromMinutes(this.options.ceil) < this.getTimeFromMinutes(changeContext.highValue)){
       //   let item = this.chart_data[this.chart_data.length - 1]
       //   this.daily_CE = item.chart_data.daily_CE
@@ -325,6 +344,11 @@ export class ChartComponent implements OnInit {
             daily_CE: item.chart_data.daily_CE,
             daily_PE: item.chart_data.daily_PE
           }
+        }
+      })
+      this.index_data.map( item => {
+        if(item.time == this.time){
+        this.index_change = item
         }
       })
       // console.log('a', a, 'b', b)

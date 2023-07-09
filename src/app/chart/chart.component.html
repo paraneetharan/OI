@@ -1,6 +1,18 @@
 <div style="display: flex;flex-direction: column;align-items: center;">
-    <h2 style="margin: 15px">Daily</h2>
-    <button class="button-style" (click)="chartChange()">{{chart_type == 'nifty'? 'Bank Nifty' : 'Nifty'}}</button>
+    <div style="display: flex;width: 90%;justify-content: center;margin-top: 15px;">
+        <div style="width: 40%;display: flex;">
+            <span style="font-weight: 500;">Nifty: &nbsp;</span>
+            <span style="margin-right: 20px;">{{index_change?.nifty_change || '-'}}%</span>
+            <span style="font-weight: 500;">Bank Nifty: &nbsp;</span>
+            <span style="margin-right: 20px;">{{index_change?.bank_nifty_change || '-'}}%</span>
+            <span style="font-weight: 500;">Fin Nifty: &nbsp;</span>
+            <span style="margin-right: 20px;">{{index_change?.fin_nifty_change || '-'}}%</span>
+        </div>
+        <h2 style="width: 20%;text-align: center;">Daily</h2>
+        <div style="width: 40%;text-align: right;">
+            <button class="button-style" (click)="chartChange()">{{chart_type == 'nifty'? 'Bank Nifty' : 'Nifty'}}</button>
+        </div>
+    </div>
     <div style="height: 660px; width: 80rem" id="daily"></div>
     <!-- <mat-slider style="width: 70%;" thumbLabel tickInterval="15" [displayWith]="formatLabel" class="example-margin"
         [disabled]="disabled" [max]="max" [min]="min" [step]="step" (input)="dailySliderChange($event)"
